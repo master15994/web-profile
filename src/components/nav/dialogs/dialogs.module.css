@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+  gap: 100px;
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}

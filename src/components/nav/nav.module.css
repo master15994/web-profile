@@ -1,0 +1,21 @@
+.nav {
+  background-color: aqua;
+  grid-area: n;
+}
+.nav li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.item {
+  text-decoration: none;
+  color: blue;
+  font-size: 20px;
+}
+
+.active {
+  font-size: 30px;
+  text-decoration: none;
+  color: blue;
+  opacity: 0.5;
+}

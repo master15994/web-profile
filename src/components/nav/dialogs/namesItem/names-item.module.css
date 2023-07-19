@@ -1,0 +1,15 @@
+.active {
+  font-size: 30px;
+  opacity: 0.9;
+  text-decoration: none;
+}
+
+.item {
+  font-size: 17px;
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.name {
+  padding: 10px;
+}
