@@ -4,7 +4,7 @@ import Header from './components/header/header';
 import Nav from './components/nav/nav';
 import Profile from './components/profile/profile';
 import Dialogs from './components/nav/dialogs/dialogs';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import News from './components/nav/news/news';
 import Music from './components/nav/music/music';
 import Settings from './components/nav/settings/settings';
@@ -18,7 +18,13 @@ const App = props => {
         <Routes>
           <Route
             path="/profile"
-            element={<Profile postsPage={props.state.profilePage} />}
+            element={
+              <Profile
+                addPost={props.addPost}
+                posts={props.state}
+                updateInputText={props.updateInputText}
+              />
+            }
           />
           <Route
             path="/dialogs/*"
