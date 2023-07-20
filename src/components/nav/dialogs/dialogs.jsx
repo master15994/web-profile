@@ -12,10 +12,29 @@ const Dialogs = props => {
     return <DialogItem text={item.text} />;
   });
 
+  let refTextInput = React.createRef();
+
+  let updateText = () => {
+    let text = refTextInput.current.value;
+    props.dispatch({ type: 'UPDATE-INPUT-TEXT', newText: text });
+    // props.updateInputText(text);
+  };
+
+  let addText = () => {
+    props.dispatch({ type: 'ADD-TEXT' });
+  };
+
   return (
     <div className={d.wrapper}>
-      <div>{namesElement}</div>
+      <div className={d.name}>{namesElement}</div>
       <div className={d.dialog}>{dialogsElement}</div>
+      <div>
+        <textarea ref={refTextInput} onChange={updateText}></textarea>
+        <br />
+        <button className={d.button} onClick={addText}>
+          Add post
+        </button>
+      </div>
     </div>
   );
 };

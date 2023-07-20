@@ -9,16 +9,14 @@ const MyPosts = props => {
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
-    let text = newPostElement.current.value;
-    props.addPost(text);
-    props.updateInputText('');
-  };
-
   let updateInput = () => {
     let text = newPostElement.current.value;
-    props.updateInputText(text);
-    console.log(updateInput);
+    let action = { type: 'UPDATE-INPUT-POST', newPost: text };
+    props.dispatch(action);
+  };
+
+  let addPost = () => {
+    props.dispatch({ type: 'ADD-POST' });
   };
 
   return (
@@ -31,7 +29,9 @@ const MyPosts = props => {
           placeholder="Write here"
         />
         <br />
-        <button onClick={addPost}>Add Post</button>
+        <button className={m.button} onClick={addPost}>
+          Add Post
+        </button>
       </div>
       {postElements}
     </div>

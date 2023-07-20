@@ -1,11 +1,26 @@
 .wrapper {
-  display: flex;
-  gap: 100px;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: 'n d' 't t ';
 }
 
+.name {
+  grid-area: n;
+}
 .dialog {
+  grid-area: d;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 25px;
+  margin-bottom: 100px;
+}
+
+.textarea {
+  grid-area: t;
+}
+
+.button {
+  padding: 8px;
 }
