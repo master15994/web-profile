@@ -29,7 +29,15 @@ const App = props => {
               />
             }
           />
-          <Route path="/news/*" element={<News />} />
+          <Route
+            path="/news/*"
+            element={
+              <News
+                dispatch={props.dispatch}
+                newsColumn={props.store.newsColumn}
+              />
+            }
+          />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

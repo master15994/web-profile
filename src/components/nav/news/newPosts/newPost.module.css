@@ -1,0 +1,15 @@
+.active {
+  font-size: 35px;
+  text-decoration: none;
+}
+
+.item {
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.news {
+  text-decoration: none;
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+}

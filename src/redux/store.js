@@ -1,5 +1,19 @@
+import dialogsReducer from './dialogs-reducer';
+import newsColumnReducer from './newsColumn-reducer';
+import profileReducer from './profile-reducer';
+
 let store = {
   _state: {
+    newsColumn: {
+      newsItem: [
+        { text: 'Why people fell alone today?', id: 1 },
+        { text: 'Hate or Love? What to choose', id: 2 },
+        { text: 'Live in 2023 ', id: 3 },
+        { text: 'See obilities', id: 4 },
+        { text: 'Work hard , Play hard', id: 5 },
+      ],
+      newItemMessage: '',
+    },
     dialogsPage: {
       namesItem: [
         { name: 'Lera', id: 1 },
@@ -40,6 +54,7 @@ let store = {
     console.log('changed');
   },
 
+  // ---------------- ВСЕ В Dispatch----------------
   // addPost() {
   //   let newPost = {
   //     text: this._state.profilePage.newWords,
@@ -71,31 +86,46 @@ let store = {
   // },
 
   dispatch(action) {
-    if (action.type === 'ADD-POST') {
-      let newPost = {
-        text: this._state.profilePage.newWords,
-        likes: 0,
-        id: 3,
-      };
-      this._state.profilePage.posts.push(newPost);
-      this._state.profilePage.newWords = '';
-      this._callSuscriber(this._state);
-    } else if (action.type === 'UPDATE-INPUT-POST') {
-      this._state.profilePage.newWords = action.newPost;
-      this._callSuscriber(this._state);
-    } else if (action.type === 'ADD-TEXT') {
-      let newText = {
-        text: this._state.dialogsPage.newWords,
-        id: 4,
-      };
+    this._state.profilePage = profileReducer(this._state.profilePage, action);
+    this._state.dialogsPage.dialogsPage = dialogsReducer(
+      this._state.dialogsPage,
+      action
+    );
+    this._state.newsColumn = newsColumnReducer(this._state.newsColumn, action);
+    this._callSuscriber(this._state);
 
-      this._state.dialogsPage.dialogsItem.push(newText);
-      this._state.dialogsPage.dialogsItem.newWords = '';
-      this._callSuscriber(this._state);
-    } else if (action.type === 'UPDATE-INPUT-TEXT') {
-      this._state.dialogsPage.newWords = action.newText;
-      this._callSuscriber(this._state);
-    }
+    // if (action.type === ADD_POST) {
+    //   let newPost = {
+    //     text: this._state.profilePage.newWords,
+    //     likes: 0,
+    //     id: 3,
+    //   };
+    //   this._state.profilePage.posts.push(newPost);
+    //   this._state.profilePage.newWords = '';
+    //   this._callSuscriber(this._state);
+    // } else if (action.type === UPDATE_INPUT_POST) {
+    //   this._state.profilePage.newWords = action.newPost;
+    //   this._callSuscriber(this._state);
+    // } else if (action.type === ADD_TEXT) {
+    //   let newText = {
+    //     text: this._state.dialogsPage.newWords,
+    //     id: 4,
+    //   };
+    //   this._state. ;
+    //   this._state.dialogsPage.dialogsItem.newWords = '';
+    //   this._callSuscriber(this._state);
+    // } else if (action.type === UPDATE_INPUT_TEXT) {
+    //   this._state.dialogsPage.newWords = action.newText;
+    //   this._callSuscriber(this._state);
+    // } else if (action.type === ADD_NEWS) {
+    //   let body = this._state.newsColumn.newItemMesaage;
+    //   this._state.newsColumn.newItemMesaage = '';
+    //   this._state.newsColumn.newsItem.push({ text: body, id: 6 });
+    //   this._callSuscriber(this._state);
+    // } else if (action.type === UPDATE_INPUT_NEWS) {
+    //   this._state.newsColumn.newItemMesaage = action.body;
+    //   this._callSuscriber(this._state);
+    // }
   },
 };
 

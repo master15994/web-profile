@@ -2,6 +2,10 @@ import React from 'react';
 import d from './dialogs.module.css';
 import NamesItem from './namesItem/names-item';
 import DialogItem from './dialogsItem/dialogs-items';
+import {
+  addTextActionCreator,
+  updateTextActionCreator,
+} from '../../../redux/dialogs-reducer';
 
 const Dialogs = props => {
   let namesElement = props.dialogs.namesItem.map(item => {
@@ -12,16 +16,16 @@ const Dialogs = props => {
     return <DialogItem text={item.text} />;
   });
 
-  let refTextInput = React.createRef();
-
-  let updateText = () => {
-    let text = refTextInput.current.value;
-    props.dispatch({ type: 'UPDATE-INPUT-TEXT', newText: text });
+  let onTextChangeClick = event => {
+    let body = event.target.value;
+    // props.dispatch({ type: 'UPDATE-INPUT-TEXT', newText: text });
     // props.updateInputText(text);
+    props.dispatch(updateTextActionCreator(body));
   };
 
   let addText = () => {
-    props.dispatch({ type: 'ADD-TEXT' });
+    // props.dispatch({ type: 'ADD-TEXT' });
+    props.dispatch(addTextActionCreator());
   };
 
   return (
@@ -29,10 +33,10 @@ const Dialogs = props => {
       <div className={d.name}>{namesElement}</div>
       <div className={d.dialog}>{dialogsElement}</div>
       <div>
-        <textarea ref={refTextInput} onChange={updateText}></textarea>
+        <textarea onChange={onTextChangeClick}></textarea>
         <br />
         <button className={d.button} onClick={addText}>
-          Add post
+          Add Text
         </button>
       </div>
     </div>

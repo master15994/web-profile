@@ -1,49 +1,31 @@
 import React from 'react';
 import n from './news.module.css';
-import { NavLink } from 'react-router-dom';
+import NewPosts from './newPosts/newPosts';
+import {
+  addNewsActionCreator,
+  updateInputNewsActionCreator,
+} from '../../../redux/newsColumn-reducer';
 
-const News = () => {
+const News = props => {
+  let newsItem = props.newsColumn.newsItem.map(item => {
+    return <NewPosts text={item.text} id={item.id} />;
+  });
+
+  let onNewsChangeClick = event => {
+    let body = event.target.value;
+    props.dispatch(updateInputNewsActionCreator(body));
+  };
+  let onaAddNews = () => {
+    props.dispatch(addNewsActionCreator());
+  };
+
   return (
     <div className={n.wrapper}>
+      <div>{newsItem}</div>
       <div>
-        <NavLink
-          className={navLink => (navLink.isActive ? n.active : n.item)}
-          to="/news/1"
-        >
-          <p>hey what up</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          className={navLink => (navLink.isActive ? n.active : n.item)}
-          to="/news/2"
-        >
-          <p>hey what up</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          className={navLink => (navLink.isActive ? n.active : n.item)}
-          to="/news/3"
-        >
-          <p>hey what up</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          className={navLink => (navLink.isActive ? n.active : n.item)}
-          to="/news/4"
-        >
-          <p>hey what up</p>
-        </NavLink>
-      </div>
-      <div>
-        <NavLink
-          className={navLink => (navLink.isActive ? n.active : n.item)}
-          to="/news/5"
-        >
-          <p>hey what up</p>
-        </NavLink>
+        <textarea onChange={onNewsChangeClick}></textarea>
+        <br />
+        <button onClick={onaAddNews}>Add News</button>
       </div>
     </div>
   );
