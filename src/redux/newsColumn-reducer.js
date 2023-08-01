@@ -3,7 +3,7 @@ const UPDATE_INPUT_NEWS = 'UPDATE-INPUT-NEWS';
 
 let initialState = {
     newsItem: [
-        { text: 'Why people fell alone today?', id: 1 },
+        { text: 'Why people feel alone today?', id: 1 },
         { text: 'Hate or Love? What to choose', id: 2 },
         { text: 'Live in 2023 ', id: 3 },
         { text: 'See obilities', id: 4 },
